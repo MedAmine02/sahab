@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -18,6 +19,13 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import AddIcon from '@mui/icons-material/Add';
+import BallotIcon from '@mui/icons-material/Ballot';
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { Outlet } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -94,7 +102,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Persistent drawer
+            <strong>SahabDev</strong>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -118,29 +126,98 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Acceuil'].map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              
+              <ListItemButton href="/Admin">
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+         
+        </List>
+        <Divider />
+        <List>
+          {['Liste Photos'].map((text, index) => (
+            
+            <Link to={"/Admin/ListePhotos"} style={{textDecoration: "none"}}>
+            <ListItem key={text} disablePadding>
+              <ListItemButton >
+                
+                <ListItemIcon>
+                  <BallotIcon/>
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+              </Link>
+          ))}
+          {['Liste Rapport'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton href="/Admin/ListeRapport">
+                <ListItemIcon>
+                <FormatListBulletedIcon/>
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
+        
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {['Ajouter Rapport'].map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton href="/Admin/Rapport">
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <AddIcon/>
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>
           ))}
+          {['Scanner Compteur'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton href="/Admin/Scanner">
+                <ListItemIcon>
+                  <QrCodeScannerIcon/>
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+
+        <Divider />
+        <List>
+          {[' Liste Comptes'].map((text, index) => (
+            <ListItem key={text}  disablePadding>
+              <ListItemButton href="/Admin/ListeComptes">
+                <ListItemIcon>
+                  <RecentActorsIcon/>
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+          
+        </List>
+        <Divider />
+        <List>
+          {[' Déconnexion'].map((text, index) => (
+            <ListItem key={text}  disablePadding>
+              <ListItemButton href="/">
+                <ListItemIcon>
+                  <LogoutIcon/>
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+          
         </List>
       </Drawer>
       <Main open={open}>
